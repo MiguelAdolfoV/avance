@@ -1,0 +1,50 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-title>Inicio</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content class="ion-padding">
+  <ion-grid>
+    <ion-row>
+      <ion-col size="12" size-md="6">
+        <div class="card">
+          <h2>Ahorro total</h2>
+          <p>$200</p>
+        </div>
+      </ion-col>
+
+      <ion-col size="12" size-md="6">
+        <div class="card">
+          <h2>Gastos totales</h2>
+          <p>$150</p>
+        </div>
+      </ion-col>
+
+      <ion-col size="12" size-md="6">
+        <div class="card">
+          <h2>Ahorro de la semana pasada</h2>
+          <p>$350</p>
+        </div>
+      </ion-col>
+    </ion-row>
+
+    <ion-row>
+      <ion-col size="12" size-md="6">
+        <canvas id="myPieChart" style="width: 100%; height: auto;"></canvas>
+      </ion-col>
+
+      <ion-col size="12" size-md="6">
+        <canvas id="myBarChart" style="width: 100%; height: auto;"></canvas>
+      </ion-col>
+    </ion-row>
+
+    <ion-row>
+      <ion-col size="12">
+        <ion-button expand="full" color="primary" (click)="goToForm()" style="margin-top: 20px;">
+          Añadir Ingreso/Egreso
+        </ion-button>
+      </ion-col>
+    </ion-row>
+  </ion-grid>
+</ion-content>

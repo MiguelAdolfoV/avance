@@ -1,0 +1,59 @@
+/* Contenedor del formulario */
+.login-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 20px;
+  height: 100vh; /* La altura del contenedor ocupa toda la pantalla */
+}
+
+/* Hacer que la imagen se ajuste */
+.login-image {
+  max-width: 100%;
+  height: auto;
+  margin-bottom: 20px;
+}
+
+/* Formulario responsivo */
+.login-form {
+  width: 100%; /* Ocupa el ancho del contenedor */
+  max-width: 400px; /* Limita el tamaño máximo en pantallas grandes */
+  padding: 20px;
+  box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1); /* Añade sombra para un diseño moderno */
+  background-color: white; /* Fondo del formulario */
+  border-radius: 10px; /* Bordes redondeados */
+}
+
+/* Estilos de los inputs */
+ion-item {
+  --highlight-background: transparent;
+  --padding-start: 0;
+}
+
+/* El botón se ajusta al tamaño de la pantalla */
+ion-button {
+  width: 100%;
+  margin-top: 20px;
+}
+
+/* Media queries para ajustar en diferentes tamaños de pantalla */
+@media (min-width: 768px) {
+  .login-container {
+    padding: 40px;
+  }
+
+  .login-form {
+    max-width: 500px;
+  }
+}
+
+@media (min-width: 1024px) {
+  .login-container {
+    padding: 60px;
+  }
+
+  .login-form {
+    max-width: 600px;
+  }
+}

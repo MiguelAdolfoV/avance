@@ -1,0 +1,69 @@
+#container {
+  text-align: center;
+  position: absolute;
+  left: 0;
+  right: 0;
+  top: 50%;
+  transform: translateY(-50%);
+  padding: 20px; /* Añade padding para pequeños dispositivos */
+  width: 100%; /* Se ajusta a cualquier tamaño de pantalla */
+  box-sizing: border-box; /* Asegura que el padding no aumente el ancho */
+}
+
+#container strong {
+  font-size: 20px;
+  line-height: 26px;
+}
+
+#container p {
+  font-size: 16px;
+  line-height: 22px;
+  color: #8c8c8c;
+  margin: 0;
+}
+
+/* Asegurarse de que el enlace sea visible en cualquier tamaño */
+#container a {
+  text-decoration: none;
+  font-size: 16px;
+  color: #007BFF; /* Puedes cambiar el color para mejor visibilidad */
+}
+
+/* Media Queries para hacer responsivo en pantallas más grandes */
+@media (min-width: 768px) {
+  #container strong {
+    font-size: 24px; /* Aumenta el tamaño en pantallas medianas */
+    line-height: 32px;
+  }
+
+  #container p {
+    font-size: 18px;
+    line-height: 26px;
+  }
+
+  #container {
+    padding: 40px; /* Más espacio alrededor en pantallas grandes */
+    max-width: 600px; /* Limita el ancho máximo en pantallas grandes */
+    margin: 0 auto; /* Centra el contenedor horizontalmente */
+    top: 40%; /* Ajusta la posición para pantallas más grandes */
+    transform: translateY(-40%);
+  }
+}
+
+@media (min-width: 1024px) {
+  #container strong {
+    font-size: 28px; /* Tamaño mayor para pantallas grandes */
+    line-height: 36px;
+  }
+
+  #container p {
+    font-size: 20px;
+    line-height: 30px;
+  }
+
+  #container {
+    max-width: 800px; /* Ajusta el tamaño máximo del contenedor */
+    top: 35%; /* Ajusta la posición para pantallas grandes */
+    transform: translateY(-35%);
+  }
+}

@@ -1,0 +1,45 @@
+.transaction-form {
+    padding: 20px;
+    max-width: 600px; /* Limita el tamaño máximo en pantallas grandes */
+    margin: 0 auto; /* Centra el formulario */
+  }
+  
+  /* Media queries para ajustar en pantallas más grandes */
+  @media (min-width: 768px) {
+    .transaction-form {
+      padding: 30px;
+      max-width: 700px;
+    }
+  
+    ion-item ion-label {
+      font-size: 18px; /* Aumenta el tamaño del texto en pantallas grandes */
+    }
+  
+    ion-item ion-input, ion-item ion-select {
+      font-size: 16px; /* Ajusta el tamaño del input y del select */
+    }
+  
+    ion-button {
+      font-size: 18px;
+    }
+  }
+  
+  @media (min-width: 1024px) {
+    .transaction-form {
+      padding: 40px;
+      max-width: 800px;
+    }
+  
+    ion-item ion-label {
+      font-size: 20px; /* Aumenta aún más el tamaño de la etiqueta en pantallas grandes */
+    }
+  
+    ion-item ion-input, ion-item ion-select {
+      font-size: 18px;
+    }
+  
+    ion-button {
+      font-size: 20px; /* Botón más grande en pantallas grandes */
+    }
+  }
+  
