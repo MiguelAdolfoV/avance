@@ -1,0 +1,37 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-title>Perfil</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <div class="profile-container">
+    <!-- Foto de perfil -->
+    <div class="profile-photo">
+      <ion-avatar>
+        <img [src]="userData?.photoUrl || 'https://via.placeholder.com/150/0000FF/808080'" alt="Foto de perfil">
+      </ion-avatar>
+      <ion-button (click)="changeProfileImage()">Cambiar Foto</ion-button>
+    </div>
+
+    <!-- Formulario de datos del usuario -->
+    <form (ngSubmit)="updateProfile()">
+      <ion-item>
+        <ion-label position="floating">Nombre</ion-label>
+        <ion-input [(ngModel)]="userData.name" name="name" required></ion-input>
+      </ion-item>
+
+      <ion-item>
+        <ion-label position="floating">Correo Electrónico</ion-label>
+        <ion-input [(ngModel)]="userData.email" name="email" type="email" required></ion-input>
+      </ion-item>
+
+      <ion-item>
+        <ion-label position="floating">Contraseña</ion-label>
+        <ion-input [(ngModel)]="userData.password" name="password" type="password" required></ion-input>
+      </ion-item>
+
+      <ion-button expand="full" type="submit" [disabled]="!userData.name || !userData.email || !userData.password">Actualizar Perfil</ion-button>
+    </form>
+  </div>
+</ion-content>

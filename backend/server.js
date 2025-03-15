@@ -42,7 +42,7 @@ app.post('/api/register', (req, res) => {
 app.post('/api/login', (req, res) => {
     const { username, password } = req.body;
     console.log('Username:', username);
-    console.log('Password:', password); // Asegúrate de no mostrar contraseñas en producción
+    console.log('Password:', password); 
 
     const query = 'SELECT * FROM usuarios WHERE username = ?';
     db.query(query, [username], (err, results) => {
@@ -70,9 +70,9 @@ app.post('/api/transactions', (req, res) => {
     
     db.query(query, [description, amount, type, user_id], (err, result) => {
         if (err) {
-            return res.status(500).json({ error: err.message }); // Devuelve error en formato JSON
+            return res.status(500).json({ error: err.message }); 
         }
-        res.status(201).json({ message: 'Transacción registrada', id: result.insertId }); // Asegúrate de que sea JSON
+        res.status(201).json({ message: 'Transacción registrada', id: result.insertId }); 
     });
 });
 
