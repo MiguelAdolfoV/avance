@@ -58,9 +58,14 @@ export class FormPage implements OnInit {
     this.http.post(apiUrl, transactionData, { headers }).subscribe(
       (response) => {
         console.log(`${this.type ? 'Ingreso' : 'Egreso'} registrado`, response);
-        
+    
         alert(`${this.type ? 'Ingreso' : 'Egreso'} registrado con éxito.`);
-        this.router.navigate(['/dashboard']);  
+    
+        this.router.navigateByUrl('/blank', { skipLocationChange: true }).then(() => {
+          this.router.navigate(['/dashboard']).then(() => {
+            window.location.reload(); // Forzar reload después de la navegación
+          });
+        });
       },
       (error) => {
         console.error('Error al registrar transacción', error);

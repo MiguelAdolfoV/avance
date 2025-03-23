@@ -1,6 +1,6 @@
 import { Component, AfterViewInit } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
-import { Router } from '@angular/router';
+import { NavigationEnd, Router } from '@angular/router';
 import { Chart, registerables } from 'chart.js';
 
 interface FinancialEntry {
@@ -27,11 +27,32 @@ export class DashboardPage implements AfterViewInit {
     private router: Router
   ) {
     Chart.register(...registerables);
+    this.router.events.subscribe((event) => {
+      if (event instanceof NavigationEnd && event.url === '/dashboard') {
+        this.loadData(); // Aquí llamas la función que refresca la información
+      }
+    });
   }
 
   ngAfterViewInit() {
     this.loadData();
     this.loadFinancialTips(); // Carga los consejos al iniciar
+  }
+  
+  refreshData(event: any) {
+    console.log("Refrescando datos...");
+    this.loadData(); // Llama a la función que carga los datos
+  
+    setTimeout(() => {
+      event.target.complete(); // Detiene el efecto de refresco
+      console.log("Datos actualizados");
+    }, 1500); // Simula un pequeño tiempo de espera
+  }
+  
+
+  ionViewWillEnter() {
+    console.log("Dashboard cargado");
+    this.loadData(); // Se ejecuta cada vez que se muestra el dashboard
   }
 
   loadData() {
@@ -46,33 +67,36 @@ export class DashboardPage implements AfterViewInit {
 
     this.http.get<FinancialEntry[]>('https://rest-api-sigma-five.vercel.app/api/ingreso/', { headers }).subscribe(
       data => {
-        let totalIncomes = 0;
-        let totalExpenditures = 0;
-        let lastWeekIncomes = 0;
+        this.totalSavings = 0;
+        this.totalExpenses = 0;
+        this.lastWeekSavings = 0;
 
         data.forEach((entry: FinancialEntry) => {
           if (entry.tipo) {  
-            totalIncomes += entry.cantidad;
+            this.totalSavings += entry.cantidad;
           } else {  
-            totalExpenditures += entry.cantidad;
+            this.totalExpenses += entry.cantidad;
           }
 
           const entryDate = new Date(entry.fecha);
           const today = new Date();
           const lastWeek = new Date();
           lastWeek.setDate(today.getDate() - 7);  
+          this.lastWeekSavings = 0;
         
           if (entryDate >= lastWeek) {
-            lastWeekIncomes += entry.cantidad;
+            this.lastWeekSavings += entry.cantidad;
           }
         });
 
-        this.totalSavings = totalIncomes - totalExpenditures;
-        this.totalExpenses = totalExpenditures;
-        this.lastWeekSavings = lastWeekIncomes - totalExpenditures;
+        this.lastWeekSavings = this.totalSavings - this.totalExpenses;
+
+        console.log('Total Ingresos:', this.totalSavings);
+        console.log('Total Egresos:', this.totalExpenses);
+        console.log('Ahorro Última Semana:', this.lastWeekSavings);
 
         this.createPieChart();
-        this.createBarChart(totalIncomes, totalExpenditures);
+        this.createBarChart(this.totalSavings, this.totalExpenses);
       },
       error => {
         console.error('Error al cargar los datos de ingresos:', error);
