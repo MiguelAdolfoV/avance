@@ -92,7 +92,8 @@ export class DashboardPage implements AfterViewInit {
     }
   
     const url = 'https://rest-api-sigma-five.vercel.app/api/ingreso/consejo';
-    
+    const username = localStorage.getItem('username');
+
 
     const headers = new HttpHeaders({
       'x-access-token': token,
@@ -100,7 +101,7 @@ export class DashboardPage implements AfterViewInit {
     });
   
     const body = {
-      usuario: 'cliente2' 
+      usuario: username 
     };
   
 

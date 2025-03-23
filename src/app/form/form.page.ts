@@ -31,6 +31,7 @@ export class FormPage implements OnInit {
 
   onSubmit() {
     const token = localStorage.getItem('authToken');  
+    const username = localStorage.getItem('username');
 
     if (!token) {
       console.error('No se encontró el token en el almacenamiento local.');
@@ -40,7 +41,7 @@ export class FormPage implements OnInit {
     }
 
     const transactionData = {
-      usuario: 'cliente2',   
+      usuario: username,   
       tipo: this.type,      
       cantidad: this.amount,  
       descripcion: this.description  

@@ -28,12 +28,14 @@ export class LoginPage {
     this.authService.login(this.email, this.password).subscribe(
       (response: any) => {
         const token = response.token;
+        const username = response.username;
         const userId = response.id;
 
         if (token) {
           // Guardar el token en localStorage
           localStorage.setItem('authToken', token);  // Guardar el token
           localStorage.setItem('userId', userId);    // Guardar el ID de usuario
+          localStorage.setItem('username', username); // Guardar el nombre de usuario 
 
           console.log('Token guardado en localStorage:', token); // Verificar en consola
 
