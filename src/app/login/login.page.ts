@@ -28,7 +28,7 @@ export class LoginPage {
     this.authService.login(this.email, this.password).subscribe(
       (response: any) => {
         const token = response.token;
-        const username = response.username;
+        const username = response.user.username;
         const userId = response.id;
 
         if (token) {
